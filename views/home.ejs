@@ -1,0 +1,26 @@
+
+<%- include("partials/header"); -%>
+    <h1>Home</h1>
+    <p> <%= startingContent %> </p>
+
+
+  <%  posts.forEach(function(post){ %>
+
+		<form action = "/delete" method="post">
+	
+					<h1><%=post.title%></h1>
+					<button class="close" onClick="this.form.submit()"></button>
+					<input type="hidden" name="listName" value="<%= post._id %>"></input>
+					<p><%=post._id.getTimestamp().toUTCString()%></p>
+    <p>
+    <%=post.content.substring(0, 100) + " ..."%>
+    <a href="/posts/<%=post._id%>">Read More</a>
+    </p>
+		
+	</form>
+    <% }) %>
+		<form class="" action="/" method="post">
+		<button class="btn btn-primary" type="submit" name="button">Publish</button>
+	</form>
+
+<%- include("partials/footer"); -%>
